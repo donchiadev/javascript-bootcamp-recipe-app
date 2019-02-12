@@ -1,5 +1,7 @@
 import uuidv4 from 'uuid/v4'
 
+let recipes = []
+
 const loadRecipes = () => {
      if (localStorage.getItem('recipes')) {
         return JSON.parse(localStorage.getItem('recipes'))
@@ -8,7 +10,10 @@ const loadRecipes = () => {
      }
 }
 
-const getRecipes = () => loadRecipes()
+const getRecipes = () => {
+    recipes = loadRecipes()
+    return recipes
+}
 
 const saveRecipes = () => {
     localStorage.setItem('recipes', JSON.stringify(recipes))
@@ -45,6 +50,6 @@ const removeRecipe = id => {
     saveRecipes()
 }
 
-let recipes = loadRecipes()
+loadRecipes()
 
 export { getRecipes, createRecipe, addIngredient }

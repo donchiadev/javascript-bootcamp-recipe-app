@@ -1,7 +1,18 @@
-import { createRecipe } from './recipes'
+import { createRecipe, getRecipes } from './recipes'
 import { renderDOM } from './view'
 
-// createRecipe('carbonara')
-// createRecipe('pasta al sugo')
+document.querySelector('#add-recipe').addEventListener('submit', e => {
+    e.preventDefault()
+    createRecipe(document.getElementById('recipe-name').value)
+    document.getElementById('recipe-name').value =''
+    renderDOM()
+})
+
+window.addEventListener('storage', e => {
+    if (e.key === 'recipes') {
+        getRecipes()
+        renderDOM()
+    }
+})
 
 renderDOM()

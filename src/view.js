@@ -40,6 +40,8 @@ const renderDOM = () => {
 
     const recipesListContainer = document.querySelector('#recipes-list')
 
+    recipesListContainer.innerHTML = ''
+
     recipes.forEach(recipe => {
         let recipeRow = generateRowDOM()
         let recipeColumn = generateColumnDOM(8)
