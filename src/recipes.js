@@ -8,9 +8,7 @@ const loadRecipes = () => {
      }
 }
 
-const getRecipes = () => {
-    return loadRecipes()
-}
+const getRecipes = () => loadRecipes()
 
 const saveRecipes = () => {
     localStorage.setItem('recipes', JSON.stringify(recipes))
@@ -40,6 +38,11 @@ const createRecipe = title => {
     recipes.push(recipe)
     saveRecipes()
     // return recipe
+}
+
+const removeRecipe = id => {
+    recipes = recipes.filter(recipe => recipe.id !== id)
+    saveRecipes()
 }
 
 let recipes = loadRecipes()

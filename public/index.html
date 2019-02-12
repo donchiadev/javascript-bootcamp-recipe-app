@@ -3,6 +3,7 @@
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link rel="stylesheet" href="./styles/style.css">
         <link rel="icon" href="./images/favicon.png">
         <title>Recipe App | Home</title>
     </head>
@@ -22,6 +23,13 @@
                 </form>
             </li>
         </ul>
+        <div class="content">
+            <div id="recipes-list" class="container"></div>
+            <form class="form-inline d-flex justify-content-center">
+                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Add a recipe">
+                <button type="submit" class="btn btn-info mb-2 mr-sm-2">Add</button>
+            </form>
+        </div>
         <script src="./scripts/bundle.js"></script>
     </body>
 </html>
