@@ -22,3 +22,7 @@ body {
 #recipes-list a {
     color: inherit;
 }
+
+#edit-page-container {
+    padding-top: 6em;
+}

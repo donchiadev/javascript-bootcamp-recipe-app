@@ -1,4 +1,5 @@
 import { getRecipes } from './recipes'
+import { getFilters } from './filters'
 
 const generateRowDOM = () => {
     const row = document.createElement('div')
@@ -12,13 +13,13 @@ const generateColumnDOM = size => {
     return column
 }
 
-const generateSummaryRecipeDOM = title => {
+const generateSummaryRecipeDOM = ({title, id}) => {
     const recipeCardContainer = document.createElement('a')
     const recipeCardBody = document.createElement('div')
     const recipeCardTitle = document.createElement('h5')
     const recipeCardText = document.createElement('p')
 
-    recipeCardContainer.setAttribute('href', '#')
+    recipeCardContainer.setAttribute('href', `./edit.html#${id}`)
 
     recipeCardTitle.textContent = title
     recipeCardText.textContent = 'Standard Message'
@@ -35,18 +36,23 @@ const generateSummaryRecipeDOM = title => {
     return recipeCardContainer
 }
 
-const renderDOM = () => {
+const renderRecipesDOM = () => {
     const recipes = getRecipes()
+    const filters = getFilters()
 
     const recipesListContainer = document.querySelector('#recipes-list')
 
     recipesListContainer.innerHTML = ''
 
-    recipes.forEach(recipe => {
+    recipes
+    .filter(recipe => {
+        return recipe.title.includes(filters.title.toLocaleLowerCase())
+    })
+    .forEach(recipe => {
         let recipeRow = generateRowDOM()
         let recipeColumn = generateColumnDOM(8)
 
-        recipeColumn.appendChild(generateSummaryRecipeDOM(recipe.title))
+        recipeColumn.appendChild(generateSummaryRecipeDOM(recipe))
         
         recipeRow.appendChild(generateColumnDOM(2))
         recipeRow.appendChild(recipeColumn)
@@ -57,4 +63,27 @@ const renderDOM = () => {
 
 }
 
-export { renderDOM }
+const renderRecipeDOM = recipe => {
+
+    const recipeTitleInput = document.getElementById('recipe-title')
+    const recipeStepsTextArea = document.getElementById('recipe-steps')
+
+    recipeTitleInput.value = recipe.title
+    recipeStepsTextArea.value = recipe.steps
+    
+    renderIngredientsListDOM(recipe)
+
+}
+
+const renderIngredientsListDOM = recipe => {
+    const recipeIngredientsList = document.getElementById('recipe-ingredients')
+    recipeIngredientsList.innerHTML = ''
+    recipe.ingredients.forEach(ingredient => {
+        const ingredientLi = document.createElement('li')
+        ingredientLi.classList.add('list-group-item')
+        ingredientLi.textContent = ingredient.name
+        recipeIngredientsList.appendChild(ingredientLi)
+    })
+}
+
+export { renderRecipesDOM, renderRecipeDOM, renderIngredientsListDOM }

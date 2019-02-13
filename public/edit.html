@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+            integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+            integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link rel="stylesheet" href="./styles/style.css">
+        <link rel="icon" href="./images/favicon.png">
+        <title>Recipe App | Edit</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-info">
+            <div class="container">
+                <a href="./index.html">
+                    <span class="navbar-brand mb-0 h1">
+                        <i class="fas fa-utensils fa-lg"></i>
+                        Recipes Application
+                    </span>
+                </a>
+            </div>
+        </nav>
+        <div id="edit-page-container" class="container">
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <div class="input-group mb-4">
+                        <input id="recipe-title" type="text" class="form-control">
+                    </div>
+                    <div class="input-group mb-4">
+                        <textarea id="recipe-steps" class="form-control"></textarea>
+                    </div>
+                    <ul id="recipe-ingredients" class="list-group mb-4"></ul>
+                    <form id="add-ingredient" class="form-inline mb-4 d-flex justify-content-center">
+                        <input id="ingredient-input" type="text" class="form-control mb-2 mr-sm-2" placeholder="Add Ingredient">
+                        <button type="submit" class="btn btn-info mb-2">Add</button>    
+                    </form>
+                    <form class="d-flex justify-content-center">
+                        <button id="delete-recipe-button" class="btn btn-danger">Delete Recipe</button>
+                    </form>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+        </div>
+        <script src="./scripts/edit-bundle.js"></script>
+    </body>
+</html>

@@ -23,6 +23,10 @@ const addIngredient = (id, ingredientName) => {
     ingredientName = ingredientName.trim().toLowerCase()
     let recipe = recipes.find(recipe => recipe.id === id)
     if (recipe) {
+        const ingredientsArrayIsEmpty = recipe.ingredients.length === 0
+        const ingredientIsValid = ingredientName !== ''
+        const ingredientNotExist = !Boolean(recipe.ingredients.find(ingredient => ingredient.name === ingredientName))
+        if (ingredientsArrayIsEmpty || (ingredientIsValid && ingredientNotExist) )
         recipe.ingredients.push({
             name: ingredientName,
             inStock: false
@@ -52,4 +56,4 @@ const removeRecipe = id => {
 
 loadRecipes()
 
-export { getRecipes, createRecipe, addIngredient }
+export { getRecipes, createRecipe, addIngredient, removeRecipe }
