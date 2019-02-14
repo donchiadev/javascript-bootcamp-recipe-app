@@ -49,11 +49,18 @@ const createRecipe = title => {
     // return recipe
 }
 
-const removeRecipe = id => {
-    recipes = recipes.filter(recipe => recipe.id !== id)
+const removeIngredient = (recipe, ingredientName) => {
+    const ingredient = recipe.ingredients.find(ingredient => ingredient.name === ingredientName)
+    const ingredientIndex = recipe.ingredients.indexOf(ingredient)
+    recipe.ingredients.splice(ingredientIndex, 1)
+    saveRecipes()
+}
+
+const removeRecipe = recipeId => {
+    recipes = recipes.filter(recipe => recipe.id !== recipeId)
     saveRecipes()
 }
 
 loadRecipes()
 
-export { getRecipes, createRecipe, addIngredient, removeRecipe }
+export { getRecipes, createRecipe, addIngredient, removeRecipe, removeIngredient }

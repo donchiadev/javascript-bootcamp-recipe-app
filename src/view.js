@@ -1,4 +1,4 @@
-import { getRecipes } from './recipes'
+import { getRecipes, removeIngredient } from './recipes'
 import { getFilters } from './filters'
 
 const generateRowDOM = () => {
@@ -77,13 +77,28 @@ const renderRecipeDOM = recipe => {
 
 const renderIngredientsListDOM = recipe => {
     const recipeIngredientsList = document.getElementById('recipe-ingredients')
+    
     recipeIngredientsList.innerHTML = ''
+    
     recipe.ingredients.forEach(ingredient => {
         const ingredientLi = document.createElement('li')
-        ingredientLi.classList.add('list-group-item')
+        const ingredientLiRemoveButton = document.createElement('i')
+
+        ingredientLi.classList.add('list-group-item', 'd-flex', 'justify-content-between')
+        ingredientLiRemoveButton.classList.add('fas', 'fa-times', 'mt-1')
+
         ingredientLi.textContent = ingredient.name
+        
+        ingredientLiRemoveButton.addEventListener('click', () => {
+            removeIngredient(recipe, ingredient.name)
+            renderIngredientsListDOM(recipe)
+        })
+        
+        ingredientLi.appendChild(ingredientLiRemoveButton)
+        
         recipeIngredientsList.appendChild(ingredientLi)
     })
+
 }
 
 export { renderRecipesDOM, renderRecipeDOM, renderIngredientsListDOM }
