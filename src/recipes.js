@@ -61,6 +61,11 @@ const removeRecipe = recipeId => {
     saveRecipes()
 }
 
+const toggleInStock = ingredient => {
+    ingredient.inStock = !ingredient.inStock
+    saveRecipes()
+}
+
 loadRecipes()
 
-export { getRecipes, createRecipe, addIngredient, removeRecipe, removeIngredient }
+export { getRecipes, createRecipe, addIngredient, removeRecipe, removeIngredient, toggleInStock }

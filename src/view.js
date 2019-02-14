@@ -1,4 +1,4 @@
-import { getRecipes, removeIngredient } from './recipes'
+import { getRecipes, removeIngredient, toggleInStock } from './recipes'
 import { getFilters } from './filters'
 
 const generateRowDOM = () => {
@@ -82,18 +82,37 @@ const renderIngredientsListDOM = recipe => {
     
     recipe.ingredients.forEach(ingredient => {
         const ingredientLi = document.createElement('li')
+        const ingredientLiCheckInStockContainer = document.createElement('div')
+        const ingredientLiCheckInStock = document.createElement('input')
+        const ingredientLiCheckInStockLabel = document.createElement('label')
         const ingredientLiRemoveButton = document.createElement('i')
 
         ingredientLi.classList.add('list-group-item', 'd-flex', 'justify-content-between')
+        ingredientLiCheckInStockContainer.classList.add('custom-control', 'custom-checkbox')
+        ingredientLiCheckInStock.classList.add('custom-control-input')
+        ingredientLiCheckInStockLabel.classList.add('custom-control-label')
         ingredientLiRemoveButton.classList.add('fas', 'fa-times', 'mt-1')
 
-        ingredientLi.textContent = ingredient.name
+        ingredientLiCheckInStock.setAttribute('type', 'checkbox')
+        ingredientLiCheckInStock.id = `${ingredient.name}-check`
+        ingredientLiCheckInStockLabel.setAttribute('for', `${ingredient.name}-check`)
+
+        ingredientLiCheckInStock.checked = ingredient.inStock
+        ingredientLiCheckInStockLabel.textContent = ingredient.name
         
+        ingredientLiCheckInStock.addEventListener('change', () => {
+            toggleInStock(ingredient)
+        })
+
         ingredientLiRemoveButton.addEventListener('click', () => {
             removeIngredient(recipe, ingredient.name)
             renderIngredientsListDOM(recipe)
         })
         
+        ingredientLiCheckInStockContainer.appendChild(ingredientLiCheckInStock)
+        ingredientLiCheckInStockContainer.appendChild(ingredientLiCheckInStockLabel)
+
+        ingredientLi.append(ingredientLiCheckInStockContainer)
         ingredientLi.appendChild(ingredientLiRemoveButton)
         
         recipeIngredientsList.appendChild(ingredientLi)
