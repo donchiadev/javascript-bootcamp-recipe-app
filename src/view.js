@@ -1,18 +1,6 @@
 import { getRecipes, removeIngredient, toggleInStock, changeSteps } from './recipes'
 import { getFilters } from './filters'
 
-const generateRowDOM = () => {
-    const row = document.createElement('div')
-    row.classList.add('row')
-    return row
-}
-
-const generateColumnDOM = size => {
-    const column = document.createElement('div')
-    column.classList.add(`col-sm-${size}`)
-    return column
-}
-
 const generateSummaryRecipeDOM = ({title, id}) => {
     const recipeCardContainer = document.createElement('a')
     const recipeCardBody = document.createElement('div')
@@ -49,16 +37,8 @@ const renderRecipesDOM = () => {
         return recipe.title.includes(filters.title.toLocaleLowerCase())
     })
     .forEach(recipe => {
-        let recipeRow = generateRowDOM()
-        let recipeColumn = generateColumnDOM(8)
-
-        recipeColumn.appendChild(generateSummaryRecipeDOM(recipe))
-        
-        recipeRow.appendChild(generateColumnDOM(2))
-        recipeRow.appendChild(recipeColumn)
-        recipeRow.appendChild(generateColumnDOM(2))
-        
-        recipesListContainer.appendChild(recipeRow)
+        const recipeSummaryCard = generateSummaryRecipeDOM(recipe)
+        recipesListContainer.appendChild(recipeSummaryCard)
     })
 
 }

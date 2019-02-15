@@ -10,16 +10,13 @@ body {
     padding-top: 0.8em;
 }
 
-#recipes-list .row {
-    padding-bottom: 0.8em;
+#recipes-list a {
+    margin-bottom: 0.8em;
+    color: inherit;
 }
 
 #recipes-list a:hover {
     text-decoration: none;
-    color: inherit;
-}
-
-#recipes-list a {
     color: inherit;
 }
 
