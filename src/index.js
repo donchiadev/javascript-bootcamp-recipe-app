@@ -11,7 +11,7 @@ document.querySelector('#add-recipe').addEventListener('submit', e => {
 
 document.querySelector('#search-recipes').addEventListener('input', () => {
     getFilters().title = document.getElementById('search-recipes').value
-    renderDOM()
+    renderRecipesDOM()
 })
 
 window.addEventListener('storage', e => {
