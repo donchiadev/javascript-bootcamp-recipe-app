@@ -1,4 +1,4 @@
-import { getRecipes, removeIngredient, toggleInStock } from './recipes'
+import { getRecipes, removeIngredient, toggleInStock, changeSteps } from './recipes'
 import { getFilters } from './filters'
 
 const generateRowDOM = () => {
@@ -70,6 +70,10 @@ const renderRecipeDOM = recipe => {
 
     recipeTitleInput.value = recipe.title
     recipeStepsTextArea.value = recipe.steps
+
+    recipeStepsTextArea.addEventListener('input', e => {
+        changeSteps(recipe, e.target.value)
+    })
     
     renderIngredientsListDOM(recipe)
 

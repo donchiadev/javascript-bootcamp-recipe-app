@@ -66,6 +66,19 @@ const toggleInStock = ingredient => {
     saveRecipes()
 }
 
+const changeSteps = (recipe, steps) => {
+    recipe.steps = steps
+    saveRecipes()
+}
+
 loadRecipes()
 
-export { getRecipes, createRecipe, addIngredient, removeRecipe, removeIngredient, toggleInStock }
+export { 
+    getRecipes, 
+    createRecipe, 
+    addIngredient, 
+    removeRecipe, 
+    removeIngredient, 
+    toggleInStock,
+    changeSteps 
+}
