@@ -1,7 +1,7 @@
-import { getRecipes, removeIngredient, toggleInStock, changeSteps } from './recipes'
+import { getRecipes, removeIngredient, toggleInStock, changeSteps, checkIngredients } from './recipes'
 import { getFilters } from './filters'
 
-const generateSummaryRecipeDOM = ({title, id}) => {
+const generateSummaryRecipeDOM = ({title, id, ingredients}) => {
     const recipeCardContainer = document.createElement('a')
     const recipeCardBody = document.createElement('div')
     const recipeCardTitle = document.createElement('h5')
@@ -10,7 +10,7 @@ const generateSummaryRecipeDOM = ({title, id}) => {
     recipeCardContainer.setAttribute('href', `./edit.html#${id}`)
 
     recipeCardTitle.textContent = title
-    recipeCardText.textContent = 'Standard Message'
+    recipeCardText.textContent = checkIngredients(ingredients)
 
     recipeCardContainer.classList.add('card')
     recipeCardBody.classList.add('card-body')

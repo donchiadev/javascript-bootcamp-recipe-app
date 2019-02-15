@@ -81,6 +81,20 @@ const toggleInStock = ingredient => {
     saveRecipes()
 }
 
+const checkIngredients = ingredients => {
+    if (ingredients.length === 0) {
+        return 'You have to add some ingredient inside the recipe'
+    }
+    const ingredientsInStock = ingredients.filter(ingredient => ingredient.inStock === true)
+    if (ingredientsInStock.length === 0) {
+        return 'You don\'t have any of the ingredients'
+    } else if (ingredientsInStock.length === ingredients.length) {
+        return 'You have all the ingredients'
+    } else {
+        return 'You have some ingredients'
+    }
+}
+
 // Changes recipe's steps property value
 const changeSteps = (recipe, steps) => {
     recipe.steps = steps
@@ -94,5 +108,6 @@ export {
     removeRecipe, 
     removeIngredient, 
     toggleInStock,
-    changeSteps 
+    changeSteps,
+    checkIngredients 
 }

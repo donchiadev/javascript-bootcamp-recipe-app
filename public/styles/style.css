@@ -23,3 +23,7 @@ body {
 #edit-page-container {
     padding-top: 6em;
 }
+
+#recipe-ingredients i:hover {
+    cursor: pointer;
+}
